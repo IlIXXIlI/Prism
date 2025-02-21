@@ -1,7 +1,3 @@
-//
-// Created by Дима … on 21.02.2025.
-//
-
 #ifndef PRISM_POINT_H
 #define PRISM_POINT_H
 

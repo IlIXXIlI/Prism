@@ -1,8 +1,5 @@
-//
-// Created by Дима … on 21.02.2025.
-//
 #include "iostream"
-
+#include "Point.h"
 int pow(int base, int exponent) {
     if (exponent < 0) {
         base = 1 / base;
@@ -38,4 +35,32 @@ int mySqrt(int x) {
         }
         guess = nextGuess;
     }
+}
+
+Point* sort_points_polygon(Point *points, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - (i + 1); j++) {
+            if (points[j].get_y() > 0 && points[j + 1].get_y() > 0) {
+                if (points[j].get_x() > points[j + 1].get_x() ) {
+                    Point b = points[j];
+                    points[j] = points[j + 1];
+                    points[j + 1] = b;
+                }
+            }
+            else if (points[j].get_y() <= 0 && points[j + 1].get_y() <= 0) {
+                if (points[j].get_x() < points[j + 1].get_x() ) {
+                    Point b = points[j];
+                    points[j] = points[j + 1];
+                    points[j + 1] = b;
+                }
+            } else if (points[j].get_y() <= 0 && points[j + 1].get_y() > 0){
+                Point b = points[j];
+                points[j] = points[j + 1];
+                points[j + 1] = b;
+            }
+        }
+    }
+
+    return points;
+
 }

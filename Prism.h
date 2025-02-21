@@ -12,7 +12,7 @@ class Prism {
 public:
     Prism(Point* base, int h);
 
-    int base_area();
+    int base_area() const;
     int side_area();
     int surface_area();
     int volume();

@@ -1,7 +1,3 @@
-//
-// Created by Дима … on 21.02.2025.
-//
-#include "iostream"
 #include "Point.h"
 #include "Utils.h"
 
