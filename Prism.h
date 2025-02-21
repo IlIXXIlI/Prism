@@ -6,13 +6,24 @@
 #define PRISM_PRISM_H
 #include "Point.h"
 
-class Prism {
-    Point* points;
-    int h;
+class BasePolygon {
+    Point* points_;
+    int n_;
+    explicit BasePolygon(Point* points, int n);
 public:
-    Prism(Point* base, int h);
+    static BasePolygon sort_points_polygon(Point *points, int n);
+    int area() const;
+    int perimeter() const;
+};
 
+
+class Prism {
+    BasePolygon base_;
+    int h_;
+public:
+    Prism(BasePolygon base, int h);
     int base_area() const;
+    int base_perimeter() const;
     int side_area();
     int surface_area();
     int volume();

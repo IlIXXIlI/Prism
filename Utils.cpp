@@ -1,5 +1,6 @@
 #include "iostream"
 #include "Point.h"
+
 int pow(int base, int exponent) {
     if (exponent < 0) {
         base = 1 / base;
@@ -37,7 +38,7 @@ int mySqrt(int x) {
     }
 }
 
-Point* sort_points_polygon(Point *points, int n) {
+Point* sort_points_polygons(Point *points, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n - (i + 1); j++) {
             if (points[j].get_y() > 0 && points[j + 1].get_y() > 0) {
