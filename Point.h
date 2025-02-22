@@ -13,5 +13,5 @@ public:
     std::ostream& dump(std::ostream& os) const;
 
 };
-
+std::ostream& operator<<(std::ostream & os, const Point& point);
 #endif //PRISM_POINT_H
