@@ -15,6 +15,7 @@ public:
     static BasePolygon sort_points_polygon(Point *points, int n);
     int area() const;
     int perimeter() const;
+    std::ostream& dump(std::ostream& os) const;
 };
 
 
@@ -28,6 +29,9 @@ public:
     int side_area();
     int surface_area();
     int volume();
-    void dump(std::ostream& os);
+    std::ostream& dump(std::ostream& os) const;
 };
+std::ostream& operator<<(std::ostream& os, const BasePolygon& base);
+std::ostream& operator<<(std::ostream& os, const Prism& prism);
+
 #endif //PRISM_PRISM_H

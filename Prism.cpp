@@ -57,30 +57,18 @@ int Prism::base_area() const {
 }
 
 int Prism::base_perimeter() const {
-
     int tmp = base_.perimeter();
     return tmp;
 }
 
 int Prism::side_area() {
-    int tmp = 0;
-    int n_;
-        
-    Point points_[n_]{};
-    BasePolygon sortedPolygon =  BasePolygon::sort_points_polygon(points_, n_);
-        
-    for(int i = 0; i < n_; i++) {
-        tmp += (points_[i].get_x() + points_[i].get_y()) * h_;
-    }
-    
+    int tmp = this->base_perimeter() * h_;
     return tmp;
 }
 
 int Prism::surface_area() {
-    
     int tmp = Prism::side_area() + 2 * Prism::base_area();
-    if (tmp < 0) return 1;
-    else return tmp;
+    return tmp;
 
 }
 
@@ -89,6 +77,24 @@ int Prism::volume() {
     return temp;
 }
 
-void Prism::dump(std::ostream& os) {
+std::ostream& BasePolygon::dump(std::ostream &os) const {
+    for (int i = 0; i < n_; i++ ) {
+        os << points_[i];
+    }
+    return os;
+}
 
+std::ostream& operator<<(std::ostream& os, const BasePolygon& base)
+{
+    return base.dump(os);
+}
+
+std::ostream& Prism::dump(std::ostream &os) const {
+    os << "Prism(Base: Base(" << base_ << ") Height: " << h_ << ")";
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Prism& prism)
+{
+    return prism.dump(os);
 }

@@ -9,4 +9,5 @@ add_executable(PRISM main.cpp
         Point.h
         Point.cpp
         Prism.h
-        Prism.cpp)
+        Prism.cpp
+)

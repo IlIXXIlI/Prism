@@ -1,9 +1,10 @@
 #ifndef PRISM_POINT_H
 #define PRISM_POINT_H
-
+#include <iostream>
 class Point {
-public:
+private:
     int x_, y_;
+public:
     Point(int x, int y);
     Point();
 

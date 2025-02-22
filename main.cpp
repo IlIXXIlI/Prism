@@ -1,17 +1,19 @@
-#include "Utils.h"
 #include "Point.h"
 #include "Prism.h"
-#include "iostream"
+#include <iostream>
 
 int main (){
-    Point points[] = {Point{1, -3}, Point{12, -6}, Point{0, -6 } , Point{10, -2}, Point{6, -4}, Point{4, -4}};
+    Point points[] = {Point{-1, 5}
+    , Point{3, 7}
+    , Point{11, 5}
+    , Point{12, -1}
+    , Point{4, -3}
+    , Point{8, 3}
+    , Point{-2, 4}
+    };
     int n = sizeof(points) / sizeof(points[0]);
-    Point* s = sort_points_polygons(points, n);
-    for (int i = 0; i < n; i++) {
-        std::cout << s[i].get_x() << "," << s[i].get_y() << std::endl;
-    }
 
-    BasePolygon base = BasePolygon::sort_points_polygon(points, 6);
+    BasePolygon base = BasePolygon::sort_points_polygon(points, n);
     std::cout << "Perimeter: " << base.perimeter()  << std::endl;
     std::cout << "Area: " << base.area()  << std::endl;
     std::cout << base << std::endl;
