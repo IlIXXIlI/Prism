@@ -15,3 +15,13 @@ int Point::get_x() const {
 int Point::get_y() const {
     return y_;
 }
+
+std::ostream& Point::dump(std::ostream& os) const{
+    os << "Point(" << x_ << ", " << y_ <<") ";
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Point& point)
+{
+    return point.dump(os);
+}
