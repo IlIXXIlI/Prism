@@ -10,6 +10,7 @@ public:
     int distance_to(Point other_point) const;
     int get_x() const;
     int get_y() const;
+    std::ostream& dump(std::ostream& os) const;
 
 };
 
