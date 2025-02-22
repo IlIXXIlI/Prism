@@ -14,6 +14,13 @@ int main (){
     BasePolygon base = BasePolygon::sort_points_polygon(points, 6);
     std::cout << "Perimeter: " << base.perimeter()  << std::endl;
     std::cout << "Area: " << base.area()  << std::endl;
+    std::cout << base << std::endl;
+
+    Prism prism = {base, 6};
+    std::cout << "Base Area: " << prism.base_area()  << std::endl;
+    std::cout << "Side Area: " << prism.side_area()  << std::endl;
+    std::cout << "Prism volume: " << prism.volume()  << std::endl;
+    std::cout << prism;
 
     return 0;
 };
