@@ -57,6 +57,38 @@ int Prism::base_area() const {
 }
 
 int Prism::base_perimeter() const {
+
     int tmp = base_.perimeter();
     return tmp;
+}
+
+int Prism::side_area() {
+    int tmp = 0;
+    int n_;
+        
+    Point points_[n_]{};
+    BasePolygon sortedPolygon =  BasePolygon::sort_points_polygon(points_, n_);
+        
+    for(int i = 0; i < n_; i++) {
+        tmp += (points_[i].get_x() + points_[i].get_y()) * h_;
+    }
+    
+    return tmp;
+}
+
+int Prism::surface_area() {
+    
+    int tmp = Prism::side_area() + 2 * Prism::base_area();
+    if (tmp < 0) return 1;
+    else return tmp;
+
+}
+
+int Prism::volume() {
+    int temp = base_area() * h_;
+    return temp;
+}
+
+void Prism::dump(std::ostream& os) {
+
 }

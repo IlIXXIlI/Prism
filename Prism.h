@@ -5,6 +5,7 @@
 #ifndef PRISM_PRISM_H
 #define PRISM_PRISM_H
 #include "Point.h"
+#include <iostream>
 
 class BasePolygon {
     Point* points_;
@@ -27,5 +28,6 @@ public:
     int side_area();
     int surface_area();
     int volume();
+    void dump(std::ostream& os);
 };
 #endif //PRISM_PRISM_H
