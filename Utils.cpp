@@ -1,5 +1,7 @@
 #include "iostream"
 #include "Point.h"
+#include "Prism.h"
+#include "Utils.h"
 
 int pow(int base, int exponent) {
     if (exponent < 0) {
@@ -71,4 +73,20 @@ Point* sort_points_polygons(Point *points, int n) {
 
     return points;
 
+}
+
+int roll_dice(int min, int max) {
+    std::uniform_int_distribution<int> uid(min, max);
+    return uid(rng);
+}
+
+Point* regular_polygons(Point* points, int n, int radius) {
+    int centerX = 0, centerY = 0;
+
+    Point* regularPoints = new Point[n];
+    for(int i = 0; i < n; ++i) {
+        double angle = 2 * PI * i / n;
+
+        int x = centerX + radius;
+    }
 }

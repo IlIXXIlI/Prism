@@ -13,6 +13,7 @@ class BasePolygon {
     explicit BasePolygon(Point* points, int n);
 public:
     static BasePolygon sort_points_polygon(Point *points, int n);
+    static BasePolygon regular_polygon(Point* points, int n, int radius);
     int area() const;
     int perimeter() const;
     std::ostream& dump(std::ostream& os) const;

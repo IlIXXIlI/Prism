@@ -10,6 +10,10 @@ BasePolygon BasePolygon::sort_points_polygon(Point *points, int n) {
     return BasePolygon{sort_points_polygons(points, n), n};
 }
 
+BasePolygon BasePolygon::regular_polygon(Point *points, int n, int radius) {
+    return BasePolygon{regular_polygons(points, n, radius), n};
+}
+
 int BasePolygon::perimeter() const {
     int tmp = 0;
     for (int i = 0; i < n_; i++) {
