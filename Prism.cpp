@@ -7,7 +7,6 @@ Prism::Prism(std::initializer_list<Point> points, int h) : BasePolygon(points), 
 BasePolygon::BasePolygon(std::initializer_list<Point> points) :
 points_(sort_points_polygons(const_cast<Point*>(points.begin()), points.size())), n_(points.size()) {}
 
-BasePolygon BasePolygon::regular_polygon(Point *points, int n, int radius) {};
 Point* BasePolygon::sort_points_polygons(Point* points_, int n) {
     int averageY = 0;
     for (int i = 0; i < n; i++) {
@@ -121,6 +120,7 @@ std::ostream& BasePolygon::dump(std::ostream &os) const {
 }
 
 BasePolygon::~BasePolygon() {}
+
 
 std::ostream& operator<<(std::ostream& os, const BasePolygon& base)
 {

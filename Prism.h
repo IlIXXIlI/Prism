@@ -17,8 +17,6 @@ protected:
 public:
     BasePolygon(std::initializer_list<Point> points);
     virtual ~BasePolygon();
-
-    static BasePolygon regular_polygon(Point* points, int n, int radius);
     int area() const;
     int perimeter() const;
     virtual std::ostream& dump(std::ostream& os) const;

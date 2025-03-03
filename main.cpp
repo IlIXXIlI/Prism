@@ -1,5 +1,6 @@
 #include "Point.h"
 #include "Prism.h"
+#include "Utils.h"
 #include <iostream>
 
 int main (){
@@ -21,7 +22,9 @@ int main (){
     std::cout << "Side Area: " << prism.side_area()  << std::endl;
     std::cout << "Area: " << prism.surface_area()  << std::endl;
     std::cout << "Prism volume: " << prism.volume()  << std::endl;
-    std::cout << prism;
+    std::cout << prism << std::endl ;
+    std::cout << roll_dice(1, 91);
+
 
     return 0;
 };

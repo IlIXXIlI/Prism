@@ -1,7 +1,5 @@
 #include "iostream"
-#include "Point.h"
 #include "Utils.h"
-#include <initializer_list>
 
 int pow(int base, int exponent) {
     if (exponent < 0) {
@@ -34,7 +32,7 @@ int mySqrt(int x) {
     while (true) {
         double nextGuess = (guess + x / guess) / 2.0;
         if (abs(nextGuess - guess) < epsilon) {
-            return nextGuess;
+            return int(nextGuess);
         }
         guess = nextGuess;
     }
@@ -47,11 +45,4 @@ int roll_dice(int min, int max) {
     return uid(rng);
 }
 
-Point* regular_polygons(int n, int radius) {
-    int centerX = 0, centerY = 0;
 
-    for(int i = 0; i < n; ++i) {
-        double angle = 2 * PI * i / n;
-        int x = centerX + radius;
-    }
-}
