@@ -1,25 +1,27 @@
-#include "Utils.h"
 #include "Prism.h"
 #include "Point.h"
 #include <initializer_list>
 
-Prism::Prism(BasePolygon base, int h) : base_(base), h_(h){};
+Prism::Prism(std::initializer_list<Point> points, int h) : BasePolygon(points), h_(h) {};
 
 BasePolygon::BasePolygon(std::initializer_list<Point> points) :
 points_(sort_points_polygons(const_cast<Point*>(points.begin()), points.size())), n_(points.size()) {}
 
-BasePolygon BasePolygon::regular_polygon(Point *points, int n, int radius) {
-}
+BasePolygon BasePolygon::regular_polygon(Point *points, int n, int radius) {};
 Point* BasePolygon::sort_points_polygons(Point* points_, int n) {
-    int averageY;
-
+    int averageY = 0;
     for (int i = 0; i < n; i++) {
+
+
         averageY += points_[i].get_y();
+
     }
     averageY /= n;
 
     for (int i = 0; i < n; i++) {
+
         for (int j = 0; j < n - (i + 1); j++) {
+
             if (points_[j].get_y() > averageY && points_[j + 1].get_y() > averageY) {
                 if (points_[j].get_x() > points_[j + 1].get_x() ) {
                     Point b = points_[j];
@@ -28,7 +30,8 @@ Point* BasePolygon::sort_points_polygons(Point* points_, int n) {
                 }
             }
             else if (points_[j].get_y() <= averageY && points_[j + 1].get_y() <= averageY) {
-                if (points_[j].get_x() < points_[j + 1].get_x() ) {
+
+                if (points_[j].get_x() < points_[j + 1].get_x()) {
                     Point b = points_[j];
                     points_[j] = points_[j + 1];
                     points_[j + 1] = b;
@@ -40,6 +43,8 @@ Point* BasePolygon::sort_points_polygons(Point* points_, int n) {
             }
         }
     }
+
+
 
     return points_;
 }
@@ -82,37 +87,40 @@ int BasePolygon::area() const {
 }
 
 int Prism::base_area() const {
-    int tmp = base_.area();
+    int tmp = this->area();
     return tmp;
 }
 
 int Prism::base_perimeter() const {
-    int tmp = base_.perimeter();
+    int tmp = perimeter();
     return tmp;
 }
 
 int Prism::side_area() {
-    int tmp = this->base_perimeter() * h_;
+    int tmp = this->perimeter() * h_;
     return tmp;
 }
 
 int Prism::surface_area() {
-    int tmp = Prism::side_area() + 2 * Prism::base_area();
+    int tmp = this->side_area() + 2 * Prism::base_area();
     return tmp;
 
 }
 
 int Prism::volume() {
-    int temp = base_area() * h_;
+    int temp = this->area() * h_;
     return temp;
 }
 
 std::ostream& BasePolygon::dump(std::ostream &os) const {
     for (int i = 0; i < n_; i++ ) {
         os << points_[i];
+        if (i != n_-1) os << " ";
     }
     return os;
 }
+
+BasePolygon::~BasePolygon() {}
 
 std::ostream& operator<<(std::ostream& os, const BasePolygon& base)
 {
@@ -120,11 +128,7 @@ std::ostream& operator<<(std::ostream& os, const BasePolygon& base)
 }
 
 std::ostream& Prism::dump(std::ostream &os) const {
-    os << "Prism(Base: Base(" << base_ << ") Height: " << h_ << ")";
+    os << "Prism(Base: Base(";
+    BasePolygon::dump(os);
     return os;
-}
-
-std::ostream& operator<<(std::ostream& os, const Prism& prism)
-{
-    return prism.dump(os);
 }

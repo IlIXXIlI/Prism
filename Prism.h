@@ -8,32 +8,34 @@
 #include <iostream>
 #include <initializer_list>
 
-class BasePolygon final {
+class BasePolygon {
+protected:
     Point* points_;
     int n_;
     Point* sort_points_polygons(Point* points_, int n);
+
 public:
     BasePolygon(std::initializer_list<Point> points);
+    virtual ~BasePolygon();
+
     static BasePolygon regular_polygon(Point* points, int n, int radius);
     int area() const;
     int perimeter() const;
-    std::ostream& dump(std::ostream& os) const;
+    virtual std::ostream& dump(std::ostream& os) const;
 };
 
 
-class Prism final {
-    BasePolygon base_;
+class Prism final : public BasePolygon  {
     int h_;
 public:
-    Prism(BasePolygon base, int h);
+    Prism(std::initializer_list<Point> points, int h);
     int base_area() const;
     int base_perimeter() const;
     int side_area();
     int surface_area();
     int volume();
-    std::ostream& dump(std::ostream& os) const;
+    std::ostream& dump(std::ostream& os) const override;
 };
 std::ostream& operator<<(std::ostream& os, const BasePolygon& base);
-std::ostream& operator<<(std::ostream& os, const Prism& prism);
 
 #endif //PRISM_PRISM_H

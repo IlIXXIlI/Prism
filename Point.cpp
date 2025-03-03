@@ -18,7 +18,7 @@ int Point::get_y() const {
 }
 
 std::ostream& Point::dump(std::ostream& os) const{
-    os << "Point(" << x_ << ", " << y_ <<") ";
+    os << "Point(" << x_ << ", " << y_ <<")";
     return os;
 }
 
