@@ -1,7 +1,7 @@
 #include "iostream"
 #include "Point.h"
-#include "Prism.h"
 #include "Utils.h"
+#include <initializer_list>
 
 int pow(int base, int exponent) {
     if (exponent < 0) {
@@ -40,53 +40,18 @@ int mySqrt(int x) {
     }
 }
 
-Point* sort_points_polygons(Point *points, int n) {
-    int averageY;
 
-    for (int i = 0; i < n; i++) {
-        averageY += points[i].get_y();
-    }
-    averageY /= n;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n - (i + 1); j++) {
-            if (points[j].get_y() > averageY && points[j + 1].get_y() > averageY) {
-                if (points[j].get_x() > points[j + 1].get_x() ) {
-                    Point b = points[j];
-                    points[j] = points[j + 1];
-                    points[j + 1] = b;
-                }
-            }
-            else if (points[j].get_y() <= averageY && points[j + 1].get_y() <= averageY) {
-                if (points[j].get_x() < points[j + 1].get_x() ) {
-                    Point b = points[j];
-                    points[j] = points[j + 1];
-                    points[j + 1] = b;
-                }
-            } else if (points[j].get_y() <= averageY && points[j + 1].get_y() > averageY){
-                Point b = points[j];
-                points[j] = points[j + 1];
-                points[j + 1] = b;
-            }
-        }
-    }
-
-    return points;
-
-}
 
 int roll_dice(int min, int max) {
     std::uniform_int_distribution<int> uid(min, max);
     return uid(rng);
 }
 
-Point* regular_polygons(Point* points, int n, int radius) {
+Point* regular_polygons(int n, int radius) {
     int centerX = 0, centerY = 0;
 
-    Point* regularPoints = new Point[n];
     for(int i = 0; i < n; ++i) {
         double angle = 2 * PI * i / n;
-
         int x = centerX + radius;
     }
 }

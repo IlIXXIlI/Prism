@@ -3,17 +3,14 @@
 #include <iostream>
 
 int main (){
-    Point points[] = {Point{-1, 5}
-    , Point{3, 7}
-    , Point{11, 5}
-    , Point{12, -1}
-    , Point{4, -3}
-    , Point{8, 3}
-    , Point{-2, 4}
-    };
-    int n = sizeof(points) / sizeof(points[0]);
+    std::initializer_list<Point> points = {Point{0, 0}
+    , Point{0, -4}
+    , Point{-4, 0}
+    , Point{-4, -4}
 
-    BasePolygon base = BasePolygon::sort_points_polygon(points, n);
+    };
+
+    BasePolygon base = {points};
     std::cout << "Perimeter: " << base.perimeter()  << std::endl;
     std::cout << "Area: " << base.area()  << std::endl;
     std::cout << base << std::endl;
@@ -21,6 +18,7 @@ int main (){
     Prism prism = {base, 6};
     std::cout << "Base Area: " << prism.base_area()  << std::endl;
     std::cout << "Side Area: " << prism.side_area()  << std::endl;
+    std::cout << "Area: " << prism.surface_area()  << std::endl;
     std::cout << "Prism volume: " << prism.volume()  << std::endl;
     std::cout << prism;
 

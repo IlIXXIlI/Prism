@@ -6,13 +6,14 @@
 #define PRISM_PRISM_H
 #include "Point.h"
 #include <iostream>
+#include <initializer_list>
 
-class BasePolygon {
+class BasePolygon final {
     Point* points_;
     int n_;
-    explicit BasePolygon(Point* points, int n);
+    Point* sort_points_polygons(Point* points_, int n);
 public:
-    static BasePolygon sort_points_polygon(Point *points, int n);
+    BasePolygon(std::initializer_list<Point> points);
     static BasePolygon regular_polygon(Point* points, int n, int radius);
     int area() const;
     int perimeter() const;
@@ -20,7 +21,7 @@ public:
 };
 
 
-class Prism {
+class Prism final {
     BasePolygon base_;
     int h_;
 public:

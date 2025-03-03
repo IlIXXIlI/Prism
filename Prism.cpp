@@ -1,23 +1,51 @@
 #include "Utils.h"
 #include "Prism.h"
 #include "Point.h"
+#include <initializer_list>
 
 Prism::Prism(BasePolygon base, int h) : base_(base), h_(h){};
 
-BasePolygon::BasePolygon(Point* points, int n) : points_(points), n_(n) {}
-
-BasePolygon BasePolygon::sort_points_polygon(Point *points, int n) {
-    return BasePolygon{sort_points_polygons(points, n), n};
-}
+BasePolygon::BasePolygon(std::initializer_list<Point> points) :
+points_(sort_points_polygons(const_cast<Point*>(points.begin()), points.size())), n_(points.size()) {}
 
 BasePolygon BasePolygon::regular_polygon(Point *points, int n, int radius) {
-    return BasePolygon{regular_polygons(points, n, radius), n};
 }
+Point* BasePolygon::sort_points_polygons(Point* points_, int n) {
+    int averageY;
 
+    for (int i = 0; i < n; i++) {
+        averageY += points_[i].get_y();
+    }
+    averageY /= n;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - (i + 1); j++) {
+            if (points_[j].get_y() > averageY && points_[j + 1].get_y() > averageY) {
+                if (points_[j].get_x() > points_[j + 1].get_x() ) {
+                    Point b = points_[j];
+                    points_[j] = points_[j + 1];
+                    points_[j + 1] = b;
+                }
+            }
+            else if (points_[j].get_y() <= averageY && points_[j + 1].get_y() <= averageY) {
+                if (points_[j].get_x() < points_[j + 1].get_x() ) {
+                    Point b = points_[j];
+                    points_[j] = points_[j + 1];
+                    points_[j + 1] = b;
+                }
+            } else if (points_[j].get_y() <= averageY && points_[j + 1].get_y() > averageY){
+                Point b = points_[j];
+                points_[j] = points_[j + 1];
+                points_[j + 1] = b;
+            }
+        }
+    }
+
+    return points_;
+}
 int BasePolygon::perimeter() const {
     int tmp = 0;
     for (int i = 0; i < n_; i++) {
-//        std::cout << "tmp: " << tmp << " dis: "  << points_[i].distance_to(points_[i + 1]) << std::endl;
 
         if (i+1 >= n_) {
             tmp += points_[i].distance_to(points_[0]);
@@ -31,7 +59,6 @@ int BasePolygon::area() const {
     int tmp = 0;
 
     for (int i = 0; i < n_; i++) {
-//        std::cout << "tmp: " << tmp  << " i=" << i << " Point1: " << points_[i].get_x() << ", " << points_[i+1].get_y() << std::endl;
         if (i+1 >= n_) {
             tmp += points_[i].get_x() * points_[0].get_y();
         } else {
@@ -40,7 +67,6 @@ int BasePolygon::area() const {
     }
 
     for (int i = 0; i < n_; i++) {
-//        std::cout << "tmp: " << tmp  << std::endl;
         if (i+1 >= n_) {
             tmp -= points_[i].get_y() * points_[0].get_x();
         } else {
