@@ -1,5 +1,6 @@
 #include "Prism.h"
 #include "Point.h"
+#include "Utils.h"
 #include <initializer_list>
 
 Prism::Prism(std::initializer_list<Point> points, int h) : BasePolygon(points), h_(h) {};
@@ -130,5 +131,6 @@ std::ostream& operator<<(std::ostream& os, const BasePolygon& base)
 std::ostream& Prism::dump(std::ostream &os) const {
     os << "Prism(Base: Base(";
     BasePolygon::dump(os);
+    os << "), Height: " << h_ << ")";
     return os;
 }

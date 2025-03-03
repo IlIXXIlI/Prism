@@ -38,11 +38,3 @@ int mySqrt(int x) {
     }
 }
 
-
-
-int roll_dice(int min, int max) {
-    std::uniform_int_distribution<int> uid(min, max);
-    return uid(rng);
-}
-
-

@@ -13,7 +13,6 @@ protected:
     Point* points_;
     int n_;
     Point* sort_points_polygons(Point* points_, int n);
-
 public:
     BasePolygon(std::initializer_list<Point> points);
     virtual ~BasePolygon();
